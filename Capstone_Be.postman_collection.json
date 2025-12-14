@@ -1,0 +1,540 @@
+{
+	"info": {
+		"_postman_id": "d6fc6be9-7d63-4325-b185-94d0fc3cd6f1",
+		"name": "Capstone_Be",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43518681",
+		"_collection_link": "https://thien-5701822.postman.co/workspace/Thien's-Workspace~6d49cddf-eea3-441b-84ef-a8e7e99c3e38/collection/43518681-d6fc6be9-7d63-4325-b185-94d0fc3cd6f1?action=share&source=collection_link&creator=43518681"
+	},
+	"item": [
+		{
+			"name": "Home Page",
+			"item": [
+				{
+					"name": "Get List Images",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/image/list",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"image",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Images",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/image/search?searchText=nature",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"image",
+								"search"
+							],
+							"query": [
+								{
+									"key": "searchText",
+									"value": "nature"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Image Management",
+			"item": [
+				{
+					"name": "Get User Info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Saved Images",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user/images-saved",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"images-saved"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Created Images",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user/images-created",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"images-created"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/image/delete/:imageId",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"image",
+								"delete",
+								":imageId"
+							],
+							"variable": [
+								{
+									"key": "imageId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Update User Info",
+			"item": [
+				{
+					"name": "Update User Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"         var jsonData = pm.response.json();\r",
+									"         if (jsonData.data) {\r",
+									"             pm.environment.set(\"token\", jsonData.data);\r",
+									"         }\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n       \"fullName\": \"Update User\",\r\n       \"email\": \"update@gmail.com\",\r\n       \"phoneNumber\": \"0900000001\"\r\n   }"
+						},
+						"url": {
+							"raw": "{{base_url}}/user/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Add Image",
+			"item": [
+				{
+					"name": "Create Image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Ngoc Thien/Downloads/Conan_Edogawa.png"
+								},
+								{
+									"key": "imageName",
+									"value": "My Image",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/image/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"image",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Image Detail",
+			"item": [
+				{
+					"name": "Get Image Info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/image/image-info/:imageId",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"image",
+								"image-info",
+								":imageId"
+							],
+							"variable": [
+								{
+									"key": "imageId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/image/comment/:imageId",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"image",
+								"comment",
+								":imageId"
+							],
+							"variable": [
+								{
+									"key": "imageId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Image Saved",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/image/save/:imageId",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"image",
+								"save",
+								":imageId"
+							],
+							"variable": [
+								{
+									"key": "imageId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "   {\r\n       \"imageId\": 1,\r\n       \"content\": \"Ảnh đẹp quá!\"\r\n   }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/image/comment",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"image",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save/Unsave Image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/image/save/:imageId",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"image",
+								"save",
+								":imageId"
+							],
+							"variable": [
+								{
+									"key": "imageId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"testuser\",\r\n  \"fullName\": \"Test User\",\r\n  \"email\": \"test@gmail.com\",\r\n  \"password\": \"123456\",\r\n  \"phoneNumber\": \"0321654879\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n       \"userName\": \"testuser\",\r\n       \"password\": \"123456\"\r\n   }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
