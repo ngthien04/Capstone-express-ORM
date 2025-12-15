@@ -44,7 +44,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/image/search?searchText=nature",
+							"raw": "{{base_url}}/image/search?searchText=Image",
 							"host": [
 								"{{base_url}}"
 							],
@@ -55,7 +55,7 @@
 							"query": [
 								{
 									"key": "searchText",
-									"value": "nature"
+									"value": "Image"
 								}
 							]
 						}
@@ -272,7 +272,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/C:/Users/Ngoc Thien/Downloads/Conan_Edogawa.png"
+									"src": "postman-cloud:///1f0d919c-43e4-4370-be93-e7fb3c52631b"
 								},
 								{
 									"key": "imageName",
@@ -506,6 +506,24 @@
 				},
 				{
 					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"  if (pm.response.code === 200) {\r",
+									"      const jsonData = pm.response.json();\r",
+									"      if (jsonData.data) {\r",
+									"          pm.environment.set(\"token\", jsonData.data);\r",
+									"      }\r",
+									"  }"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "noauth"
